@@ -205,8 +205,8 @@ class Player {
     // MARK: Modify Grid
     
     func revealShipAtLocation(location: GridLocation) {
-//        let connectedCells = grid[location.x][location.y].ship?.cells
-//        gridView.revealLocations(connectedCells!)
+        let connectedCells = grid[location.x][location.y].ship?.cells
+        gridView.revealLocations(connectedCells!)
     }
     
     func addPlayerShipsMinesMonsters(numberOfMines: Int = 0, numberOfSeamonsters: Int = 0) {

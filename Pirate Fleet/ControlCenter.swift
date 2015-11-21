@@ -7,8 +7,8 @@
 //
 
 struct GridLocation {
-    let x: Int
-    let y: Int
+    var x: Int
+    var y: Int
 }
 
 struct Ship {
@@ -17,24 +17,81 @@ struct Ship {
     let isVertical: Bool
     let isWooden: Bool
     
-
-// TODO: Add the computed property, cells.
-//    var cells: [GridLocation] {
-//        get {
-//            // Hint: These two constants will come in handy
-//            let start = self.location
-//            let end: GridLocation = ShipEndLocation(self)
-//            
-//            // Hint: The cells getter should return an array of GridLocations.
-//            var occupiedCells = [GridLocation]()
-//
-//        }
-//    }
+    var cells: [GridLocation] {
+        get {
+            // Hint: These two constants will come in handy
+            let start = self.location
+            let end: GridLocation = ShipEndLocation(self)
+            
+            // Hint: The cells getter should return an array of GridLocations.
+            var occupiedCells = [GridLocation]()
+            if length == 2 {
+                occupiedCells.append(start)
+                occupiedCells.append(end)
+            } else if length == 3 {
+                var second = start
+                if isVertical == true {
+                    second.y = start.y + 1
+                } else if isVertical == false {
+                    second.x = start.x + 1
+                }
+                occupiedCells.append(start)
+                occupiedCells.append(second)
+                occupiedCells.append(end)
+            } else if length == 4 {
+                var second = start
+                if isVertical == true {
+                    second.y = start.y + 1
+                } else if isVertical == false {
+                    second.x = start.x + 1
+                }
+                var third = start
+                if isVertical == true {
+                    third.y = second.y + 1
+                } else if isVertical == false {
+                    third.x = second.x + 1
+                }
+                occupiedCells.append(start)
+                occupiedCells.append(second)
+                occupiedCells.append(third)
+                occupiedCells.append(end)
+            } else if length == 5 {
+                var second = start
+                if isVertical == true {
+                    second.y = start.y + 1
+                } else if isVertical == false {
+                    second.x = start.x + 1
+                }
+                var third = start
+                if isVertical == true {
+                    third.y = second.y + 1
+                } else if isVertical == false {
+                    third.x = second.x + 1
+                }
+                var fourth = start
+                if isVertical == true {
+                    fourth.y = third.y + 1
+                } else if isVertical == false {
+                    fourth.x = third.x + 1
+                }
+                occupiedCells.append(start)
+                occupiedCells.append(second)
+                occupiedCells.append(third)
+                occupiedCells.append(fourth)
+                occupiedCells.append(end)
+            }
+        return occupiedCells
+        }
+    }
     
     var hitTracker: HitTracker
 // TODO: Add a getter for sunk. Calculate the value returned using hitTracker.cellsHit.
     var sunk: Bool {
-        return false
+        var wasSunk = true
+        for (_, value) in hitTracker.cellsHit {
+            wasSunk = wasSunk && value
+        }
+        return wasSunk
     }
 
 // TODO: Add custom initializers
@@ -67,8 +124,12 @@ class ControlCenter {
         let smallShip = Ship(length: 2, location: GridLocation(x: 3, y: 4), isVertical: true, isWooden: false, hitTracker: HitTracker())
         human.addShipToGrid(smallShip)
         
+        print(smallShip.cells)
+        
         let mediumShip1 = Ship(length: 3, location: GridLocation(x: 0, y: 0), isVertical: false, isWooden: false, hitTracker: HitTracker())
         human.addShipToGrid(mediumShip1)
+        
+        print(mediumShip1.cells)
         
         let mediumShip2 = Ship(length: 3, location: GridLocation(x: 3, y: 1), isVertical: false, isWooden: false, hitTracker: HitTracker())
         human.addShipToGrid(mediumShip2)
@@ -90,6 +151,8 @@ class ControlCenter {
         
         let seamonster2 = SeaMonster(location: GridLocation(x: 2, y: 2))
         human.addSeamonsterToGrid(seamonster2)
+    
+        
     }
     
     func calculateFinalScore(gameStats: GameStats) -> Int {
