@@ -155,16 +155,16 @@ class ControlCenter {
         let xLargeShip = Ship(length: 5, location: GridLocation(x: 7, y: 2), isVertical: true, isWooden: true)
         human.addShipToGrid(xLargeShip)
         
-        let mine1 = Mine(location: GridLocation(x: 6, y: 0), guaranteedHit: false, penaltyText: "Boom")
+        let mine1 = Mine(location: GridLocation(x: 6, y: 0), guaranteedHit: false, penaltyText: "KA-BOOM!")
         human.addMineToGrid(mine1)
         
-        let mine2 = Mine(location: GridLocation(x: 3, y: 3), guaranteedHit: false, penaltyText: "Boom")
+        let mine2 = Mine(location: GridLocation(x: 3, y: 3), guaranteedHit: false, penaltyText: "KA-BOOM!")
         human.addMineToGrid(mine2)
         
-        let seamonster1 = SeaMonster(location: GridLocation(x: 5, y: 6), guaranteedHit: true, penaltyText: "Boom")
+        let seamonster1 = SeaMonster(location: GridLocation(x: 5, y: 6), guaranteedHit: true, penaltyText: "Seaamonsterrr!!")
         human.addSeamonsterToGrid(seamonster1)
         
-        let seamonster2 = SeaMonster(location: GridLocation(x: 2, y: 2), guaranteedHit: true, penaltyText: "Boom")
+        let seamonster2 = SeaMonster(location: GridLocation(x: 2, y: 2), guaranteedHit: true, penaltyText: "Seaamonsterrr!!")
         human.addSeamonsterToGrid(seamonster2)
     
     }
