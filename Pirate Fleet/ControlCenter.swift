@@ -125,6 +125,19 @@ struct Mine: PenaltyCell {
     let location: GridLocation
     let guaranteedHit: Bool
     let penaltyText: String
+    
+    init(location: GridLocation, penaltyText: String) {
+        self.location = location
+        self.penaltyText = penaltyText
+        self.guaranteedHit = false
+    }
+    
+    init(location: GridLocation, penaltyText: String, guaranteedHit: Bool) {
+        self.location = location
+        self.penaltyText = penaltyText
+        self.guaranteedHit = guaranteedHit
+    }
+
 }
 
 // TODO: Adopt and implement the PenaltyCell protocol
@@ -155,10 +168,10 @@ class ControlCenter {
         let xLargeShip = Ship(length: 5, location: GridLocation(x: 7, y: 2), isVertical: true, isWooden: true)
         human.addShipToGrid(xLargeShip)
         
-        let mine1 = Mine(location: GridLocation(x: 6, y: 0), guaranteedHit: false, penaltyText: "KA-BOOM!")
+        let mine1 = Mine(location: GridLocation(x: 6, y: 0), penaltyText: "KA-BOOM!")
         human.addMineToGrid(mine1)
         
-        let mine2 = Mine(location: GridLocation(x: 3, y: 3), guaranteedHit: false, penaltyText: "KA-BOOM!")
+        let mine2 = Mine(location: GridLocation(x: 3, y: 3), penaltyText: "KA-BOOM!", guaranteedHit: true)
         human.addMineToGrid(mine2)
         
         let seamonster1 = SeaMonster(location: GridLocation(x: 5, y: 6), guaranteedHit: true, penaltyText: "Seaamonsterrr!!")
